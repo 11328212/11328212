@@ -1,0 +1,75 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "aa5abd01-1cde-4ab3-adb6-5460aa8e4bbf",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "# 藥物反應模擬函式\n",
+    "def simulate_drug_response(dose, clearance, time_hours):\n",
+    "    \"\"\"\n",
+    "    模擬藥物濃度隨時間變化\n",
+    "    :param dose: 藥物劑量 (mg)\n",
+    "    :param clearance: 清除率 (每小時)\n",
+    "    :param time_hours: 模擬總時數\n",
+    "    :return: 時間點 (hours), 濃度數據 (mg/L)\n",
+    "    \"\"\"\n",
+    "    time_points = np.linspace(0, time_hours, num=100)  # 100個時間點\n",
+    "    concentrations = (dose / clearance) * np.exp(-clearance * time_points)\n",
+    "    return time_points, concentrations\n",
+    "\n",
+    "# 使用者輸入\n",
+    "dose = float(input(\"請輸入藥物劑量 (mg): \"))\n",
+    "clearance = float(input(\"請輸入清除率 (每小時): \"))\n",
+    "time_hours = int(input(\"請輸入模擬總時數 (小時): \"))\n",
+    "\n",
+    "# 模擬數據\n",
+    "time_points, concentrations = simulate_drug_response(dose, clearance, time_hours)\n",
+    "\n",
+    "# 繪製折線圖\n",
+    "plt.figure(figsize=(10, 6))\n",
+    "plt.plot(time_points, concentrations, label=\"藥物濃度\", color=\"blue\")\n",
+    "plt.title(\"藥物濃度隨時間變化\", fontsize=16)\n",
+    "plt.xlabel(\"時間 (小時)\", fontsize=14)\n",
+    "plt.ylabel(\"濃度 (mg/L)\", fontsize=14)\n",
+    "plt.grid(True)\n",
+    "plt.legend(fontsize=12)\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "12861c8d-e851-47af-9dec-651145951a20",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
